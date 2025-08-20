@@ -8,7 +8,7 @@
         "version": "1.0.0-beta.1",
         "languages": ["Java"],
         "links": {
-            "download": "proyects/minecraft-server/index.html",
+            "download": "proyects/minecraft-server",
             "repository": "https://github.com/dogiloki/minecraftServer"
         },
         "warning": "Este proyecto NO ES OFICIAL de Mojang o Microsoft, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.",
