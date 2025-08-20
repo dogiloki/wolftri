@@ -274,40 +274,98 @@
         <button class="filter-btn" data-filter="utility">Utilidades</button>
     </div>
     
-    <div class="projects-container">
-        
-        <div class="project-card" data-type="desktop">
+    <div class="projects-container" id="projects-container"></div>
+    
+    <template id="projects-container-template">
+        <div class="project-card" data-type="">
             <div class="project-image">
-                <img src="proyects/minecraft-server/assets/logo.svg">
+                <img src="">
             </div>
             <div class="project-content">
-                <span class="project-type type-desktop">Desktop App</span>
-                <h3 class="project-title">Minecraft Server</h3>
-                <p class="project-description">Aplicación para gestionar servidores de Minecraft e instancias. Soporte para crear respaldos de mundos.</p>
+                <span class="project-type"></span>
+                <h3 class="project-title"></h3>
+                <p class="project-description"></p>
                 <div class="project-meta">
-                    <span>v1.0.0-beta.1</span>
-                    <span>Java</span>
+                    <span class="project-version"></span>
+                    <span class="project-languages"></span>
                 </div>
                 <div class="project-actions">
-                    <a href="proyects/minecraft-server/index.html" class="btn btn-primary">Descargar</a>
-                    <a href="https://github.com/dogiloki/minecraftServer" class="btn btn-secondary">Repositorio</a>
+                    <a href="" class="btn btn-primary project-download-btn">Descargar</a>
+                    <a href="" class="btn btn-secondary project-repository-btn">Repositorio</a>
                 </div>
                 <div class="project-warning">
-                    <strong>Advertencia:</strong> <b>Este proyecto NO ES OFICIAL de Mojang o Microsoft</b>, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.
+                    <strong>Advertencia:</strong>
+                    <span></span>
                 </div>
             </div>
         </div>
-        
-    </div>
+    </template>
     
     <footer>
-        <p>© 2025 - <a href="https://github.com/dogiloki/">https://github.com/dogiloki/</a></p>
+        <p>© 2025 - <a href="https://github.com/dogiloki" title="Desarrollador">https://github.com/dogiloki</a></p>
         <p>Contacto: Julio Villanueva - wolftri2002@gmail.com</p>
     </footer>
 
-    <script>
+    <script type="module">
+
+        import XHR from './scripts/XHR.js';
+
+        const projects_container_template=document.getElementById('projects-container-template');
+        const projects_container=document.getElementById('projects-container');
+
         // Filtrado de proyectos
         document.addEventListener('DOMContentLoaded', function() {
+            getProjects();
+        });
+
+        function getProjects(){
+            XHR.request({
+                uri:"projects.json",
+                headers:{
+                    'Accept':'application/json'
+                },
+                action:(xhr)=>{
+                    xhr.responseType='json';
+                },
+                load:(data)=>{
+                    loadProjects(data.response);
+                }
+            });
+        }
+
+        function loadProjects(projects){
+            projects_container.innerHTML="";
+            for(let project of projects){
+                // Obtener elementos
+                const clone=projects_container_template.content.cloneNode(true);
+                const card=clone.querySelector('.project-card');
+                const image=clone.querySelector('.project-image img');
+                const type=clone.querySelector('.project-type');
+                const title=clone.querySelector('.project-title');
+                const description=clone.querySelector('.project-description');
+                const version=clone.querySelector('.project-version');
+                const languages=clone.querySelector('.project-languages');
+                const download_btn=clone.querySelector('.project-download-btn');
+                const repository_btn=clone.querySelector('.project-repository-btn');
+                const warning=clone.querySelector('.project-warning span');
+
+                // Llenar elemento con los datos del proyectos
+                card.setAttribute('data-type',project.type);
+                image.src=project.image;
+                type.classList.add('type-'+project.type);
+                type.textContent=getFilterText(project.type);
+                title.textContent=project.title;
+                description.textContent=project.description;
+                version.textContent=project.version;
+                languages.textContent=project.languages.join(",");
+                download_btn.href=project.links.download;
+                repository_btn.href=project.links.repository;
+                warning.textContent=project.warning;
+
+                // Agregar proyecto al contenedor
+                projects_container.appendChild(clone);
+            }
+
             const filterButtons = document.querySelectorAll('.filter-btn');
             const projectCards = document.querySelectorAll('.project-card');
             
@@ -332,7 +390,15 @@
                     });
                 });
             });
-        });
+        }
+
+        function getFilterText(value){
+            return {
+                "desktop": "Aplicación de Escritorio",
+                "web": "Sitio Web",
+                "utility": "Utilidad"
+            }[value];
+        }
     </script>
 </body>
 </html>
