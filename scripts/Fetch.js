@@ -2,7 +2,7 @@ import Util from './Util.js';
 
 export default class Fetch{
 
-    static host=document.location.protocol+"//"+window.location.host;
+    static host=document.location.protocol+"//"+window.location.host+"/wolftri";
 
     static get(url,action,array={},resert=false){
         Fetch.#request('GET',url,action,array,resert);
