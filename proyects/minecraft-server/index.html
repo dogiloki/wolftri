@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager Pro - Detalles del Proyecto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1.5rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-btn:hover {
+            opacity: 0.8;
+        }
+        
+        /* Main content */
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Project header */
+        .project-header {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-image {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            overflow: hidden;
+            padding: 10px;
+        }
+        
+        .project-image img {
+            width: 200px;
+            height: auto;
+        }
+        
+        .project-info {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .project-type {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background-color: rgba(52, 152, 219, 0.2);
+            color: var(--secondary-color);
+        }
+        
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .project-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 0.3rem;
+        }
+        
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 2rem;
+        }
+        
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            color: #777;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            color: var(--secondary-color);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        
+        .tab:hover {
+            color: var(--secondary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Versions section */
+        .versions-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .version-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            transition: var(--transition);
+        }
+        
+        .version-item:last-child {
+            border-bottom: none;
+        }
+        
+        .version-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .version-info {
+            flex: 2;
+        }
+        
+        .version-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .version-date {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+        
+        .version-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .version-download {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .download-btn {
+            padding: 0.6rem 1.2rem;
+            background-color: var(--success-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .download-btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+        }
+        
+        /* Features section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            
+            ul{
+                margin-left: 1rem;
+            }
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+        }
+        
+        .feature-description {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* Screenshots section */
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .screenshot-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            padding: 10px;
+        }
+        
+        .screenshot-item img {
+            width: 200px;
+            height: 100%;
+        }
+        
+        /* Documentation section */
+        .doc-section {
+            margin-bottom: 2rem;
+        }
+        
+        .doc-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .doc-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .doc-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .doc-content ul, .doc-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .doc-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-warning {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--accent-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+
+            a{
+                color: var(--secondary-color);
+                text-decoration: none;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-header {
+                flex-direction: column;
+            }
+            
+            .project-title {
+                font-size: 2rem;
+            }
+            
+            .tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .project-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .version-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .version-download {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="https://github.com/dogiloki" class="back-btn">
+                <div class="logo">
+                    <i class="fas fa-project-diagram"></i>
+                    <span title="Creador">Julio Villanueva</span>
+                </div>
+            </a>
+            <a href="../../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Volver a proyectos
+            </a>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <div class="project-header">
+            <div class="project-image">
+                <img src="assets/logo.svg" alt="Task Manager Pro">
+            </div>
+            <div class="project-info">
+                <span class="project-type">Desktop App</span>
+                <h1 class="project-title">Minecraft Server</h1>
+                <p class="project-description">
+                    Aplicación para gestionar servidores de Minecraft e instancias. Soporte para crear respaldos de mundos.
+                </p>
+                
+                <div class="project-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Versión actual</span>
+                        <span class="meta-value">v1.0.0-beta.1</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Lanzamiento</span>
+                        <span class="meta-value">20 Agosto 2025</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Plataformas</span>
+                        <span class="meta-value">Windows</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Tamaño</span>
+                        <span class="meta-value">1 MB</span>
+                    </div>
+                </div>
+                
+                <div class="project-actions">
+                    <a href="https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.1.zip" class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        Descargar última versión
+                    </a>
+                    <a href="https://github.com/dogiloki/minecraftServer" class="btn btn-secondary">
+                        <i class="fab fa-github"></i>
+                        Ver código fuente
+                    </a>
+                </div>
+
+                <div class="project-warning">
+                    <strong>Advertencia:</strong> <b>Este proyecto NO ES OFICIAL de Mojang o Microsoft</b>, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.
+                </div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="versions">Versiones</div>
+            <div class="tab" data-tab="features">Características</div>
+            <div class="tab" data-tab="screenshots">Capturas</div>
+            <div class="tab" data-tab="documentation">Documentación</div>
+        </div>
+        
+        <div class="tab-content active" id="versions">
+            <div class="versions-container">
+                <div class="version-item">
+                    <div class="version-info">
+                        <h3 class="version-title">v1.0.0-beta.1 - Estable</h3>
+                        <div class="version-date">20 Agosto 2025</div>
+                        <p class="version-description">
+                            Primera versión
+                        </p>
+                    </div>
+                    <div class="version-download">
+                        <a href="https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.1.zip" class="download-btn">
+                            <i class="fas fa-download"></i>
+                            Descargar (1 MB)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="features">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="feature-title">Creación de Instancias</h3>
+                    <p class="feature-description">
+                        Una instancia es un espacio de trabajo independiente donde puedes gestionar<br>
+                        <ul>
+                            <li>Versión de Java para lanzar el servidor</li>
+                            <li>Versión de Minecraft</li>
+                            <li>Versión de forge con mods</li>
+                            <li>Mundos asociados a la instancia</li>
+                            <li>Gestión de Mods a utilizar</li>
+                            <li>Configuraciones personalizadas del servidor</li>
+                        </ul>
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3 class="feature-title">Gestión de Paquetes de Mods</h3>
+                    <p class="feature-description">
+                        Tiene un apartado central donde se almacenan todos los paquetes de mods.
+                        Al crear una instancia de puede elegir cuales usar y cuales no, sin importar en que paquete estén.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="feature-title">Respaldos de Mundos Integrado con <a href="https://git-scm.com/downloads">GIT</a></h3>
+                    <p class="feature-description">
+                        Pueder hacer un respaldo de un mundo en cualquier momento.
+                        Los respaldos se hacen con GIT, por lo que puedes ver los cambios entre cada respaldo, volver a un respaldo anterior, etc.
+                        Nota: Es necesario tener GIT instalado en el sistema.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Facíl de actualizar</h3>
+                    <p class="feature-description">
+                        Hay un botón en la parte superior derecha que te permite buscar actualizaciones.
+                        Si hay una nueva versión disponible, te mostrará un botón para descargarla e instalarla.
+                        Todo el proceso es automático y no perderás ninguna configuración ni dato.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="screenshots">
+            <div class="screenshots-grid">
+                <div class="screenshot-item">
+                    <img src="assets/logo.svg">
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="documentation">
+            <div class="doc-section">
+                <h3>Instalación</h3>
+                <div class="doc-content">
+                    <p>Siga estos pasos para inciar Minecraft Server en su sistema:</p>
+                    <ol>
+                        <li>Descargue la versión adecuada para su sistema operativo</li>
+                        <li>Descomprima el archivo (es progrma es portable)</li>
+                        <li>Ejecute el archivo minecraft-server.exe</li>
+                        <li>¡Comience a usar Minecraft Server!</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="doc-section">
+                <h3>Tutorial</h3>
+                <div class="doc-content">
+                    PROXIMAMENTE...
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 - <a href="https://github.com/dogiloki/">https://github.com/dogiloki/</a></p>
+        <p>Contacto: Julio Villanueva - wolftri2002@gmail.com</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
