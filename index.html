@@ -103,24 +103,20 @@
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
         
         .project-image {
-            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
+            padding: 10px;
         }
         
         .project-image img {
-            width: 100%;
+            width: 200px;
             height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .project-card:hover .project-image img {
-            transform: scale(1.05);
         }
         
         .project-content {
@@ -174,6 +170,7 @@
         .project-actions {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
             gap: 0.8rem;
         }
         
@@ -182,7 +179,7 @@
             border-radius: 5px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 1rem;
             transition: var(--transition);
             display: inline-flex;
             align-items: center;
@@ -212,6 +209,15 @@
             background-color: #bdc3c7;
             color: #7f8c8d;
             cursor: not-allowed;
+        }
+
+        .project-warning {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--accent-color);
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
         }
         
         /* Footer */
@@ -272,7 +278,7 @@
         
         <div class="project-card" data-type="desktop">
             <div class="project-image">
-                <img src="assets/minecraft-server/image.svg" alt="Descripción de la imagen">
+                <img src="assets/minecraft-server/image.png" alt="Descripción de la imagen">
             </div>
             <div class="project-content">
                 <span class="project-type type-desktop">Desktop App</span>
@@ -285,6 +291,9 @@
                 <div class="project-actions">
                     <a href="proyects/minecraft-server/index.html" class="btn btn-primary">Descargar</a>
                     <a href="https://github.com/dogiloki/minecraftServer" class="btn btn-secondary">Repositorio</a>
+                </div>
+                <div class="project-warning">
+                    <strong>Advertencia:</strong> <b>Este proyecto NO ES OFICIAL de Mojang o Microsoft</b>, es un proyecto personal para facilitar la gestión de servidores de Minecraft.
                 </div>
             </div>
         </div>
