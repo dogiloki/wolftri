@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Tarjetas de Proyectos</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --card-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            grid-column: 1 / -1;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .preview-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: #dde4e6;
+        }
+        
+        .btn-danger {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .actions-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .code-container {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        
+        .tag {
+            color: #f92672;
+        }
+        
+        .attribute {
+            color: #a6e22e;
+        }
+        
+        .value {
+            color: #e6db74;
+        }
+        
+        .content {
+            color: #f8f8f2;
+        }
+        
+        /* Estilos para la tarjeta de preview */
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 20px;
+        }
+        
+        .project-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .type-desktop {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: var(--secondary-color);
+        }
+        
+        .type-web {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+        }
+        
+        .type-utility {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--accent-color);
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+        }
+        
+        .project-description {
+            color: #666;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .btn-preview {
+            padding: 0.6rem 1.2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        
+        .btn-preview-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-preview-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 1px solid var(--secondary-color);
+        }
+        
+        .btn-preview-disabled {
+            background-color: #bdc3c7;
+            color: #7f8c8d;
+            cursor: not-allowed;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.error {
+            background: var(--accent-color);
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .import-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .import-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Generador de Tarjetas de Proyectos</h1>
+            <p>Rellena el formulario para generar el código HTML de tu tarjeta de proyecto</p>
+        </header>
+        
+        <div class="form-container">
+            <div class="form-group">
+                <label for="project-type">Tipo de proyecto</label>
+                <select id="project-type">
+                    <option value="desktop">Aplicación de escritorio</option>
+                    <option value="web">Sitio web</option>
+                    <option value="utility">Utilidad/Librería</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="project-title">Título del proyecto</label>
+                <input type="text" id="project-title" placeholder="Ej: Task Manager Pro">
+            </div>
+            
+            <div class="form-group">
+                <label for="project-description">Descripción</label>
+                <textarea id="project-description" placeholder="Describe brevemente tu proyecto..."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="project-image">URL de la imagen</label>
+                <input type="text" id="project-image" placeholder="https://ejemplo.com/imagen.jpg">
+            </div>
+            
+            <div class="form-group">
+                <label for="image-alt">Texto alternativo de la imagen</label>
+                <input type="text" id="image-alt" placeholder="Descripción de la imagen">
+            </div>
+            
+            <div class="two-columns">
+                <div class="form-group">
+                    <label for="meta-1">Meta información 1</label>
+                    <input type="text" id="meta-1" placeholder="Ej: v2.1.4">
+                </div>
+                
+                <div class="form-group">
+                    <label for="meta-2">Meta información 2</label>
+                    <input type="text" id="meta-2" placeholder="Ej: Windows, macOS, Linux">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="primary-btn-text">Texto del botón principal</label>
+                <input type="text" id="primary-btn-text" placeholder="Ej: Descargar">
+            </div>
+            
+            <div class="form-group">
+                <label for="primary-btn-url">URL del botón principal</label>
+                <input type="text" id="primary-btn-url" placeholder="https://...">
+            </div>
+            
+            <div class="form-group">
+                <label for="repo-url">URL del repositorio (GitHub)</label>
+                <input type="text" id="repo-url" placeholder="https://github.com/usuario/repo">
+            </div>
+            
+            <div class="actions-row">
+                <button id="generate-btn" class="btn btn-primary">Generar código</button>
+                <button id="reset-btn" class="btn btn-secondary">Restablecer</button>
+            </div>
+            
+            <div class="code-container">
+                <code id="generated-code">// El código generado aparecerá aquí</code>
+            </div>
+            
+            <div class="actions-row">
+                <button id="copy-btn" class="btn btn-primary">Copiar código</button>
+            </div>
+            
+            <div class="import-section">
+                <h3>Importar/Editar código existente</h3>
+                <div class="form-group">
+                    <label for="import-code">Pega el código HTML de una tarjeta existente</label>
+                    <textarea id="import-code" placeholder="Pega aquí el código HTML..."></textarea>
+                </div>
+                <div class="import-actions">
+                    <button id="import-btn" class="btn btn-secondary">Importar código</button>
+                    <button id="clear-import-btn" class="btn btn-danger">Limpiar</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="preview-container">
+            <h2>Vista previa</h2>
+            <div id="preview">
+                <div class="project-card" data-type="desktop">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/300x180/3498db/ffffff?text=Project+Image" alt="Project preview image">
+                    </div>
+                    <div class="project-content">
+                        <span class="project-type type-desktop">Desktop App</span>
+                        <h3 class="project-title">Nombre del Proyecto</h3>
+                        <p class="project-description">Descripción breve del proyecto. Esta es una vista previa de cómo se verá tu tarjeta.</p>
+                        <div class="project-meta">
+                            <span>Meta info 1</span>
+                            <span>Meta info 2</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn-preview btn-preview-primary">Acción principal</a>
+                            <a href="#" class="btn-preview btn-preview-secondary">Repositorio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification" class="notification">
+        ¡Código copiado al portapapeles!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const projectType = document.getElementById('project-type');
+            const projectTitle = document.getElementById('project-title');
+            const projectDescription = document.getElementById('project-description');
+            const projectImage = document.getElementById('project-image');
+            const imageAlt = document.getElementById('image-alt');
+            const meta1 = document.getElementById('meta-1');
+            const meta2 = document.getElementById('meta-2');
+            const primaryBtnText = document.getElementById('primary-btn-text');
+            const primaryBtnUrl = document.getElementById('primary-btn-url');
+            const repoUrl = document.getElementById('repo-url');
+            const generateBtn = document.getElementById('generate-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const generatedCode = document.getElementById('generated-code');
+            const preview = document.getElementById('preview');
+            const notification = document.getElementById('notification');
+            const importCode = document.getElementById('import-code');
+            const importBtn = document.getElementById('import-btn');
+            const clearImportBtn = document.getElementById('clear-import-btn');
+            
+            // Actualizar vista previa en tiempo real
+            const inputs = document.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', updatePreview);
+            });
+            
+            // Generar código al hacer clic en el botón
+            generateBtn.addEventListener('click', generateCode);
+            
+            // Restablecer formulario
+            resetBtn.addEventListener('click', function() {
+                document.querySelectorAll('input:not([id="project-type"]), textarea').forEach(input => {
+                    input.value = '';
+                });
+                projectType.value = 'desktop';
+                updatePreview();
+                generateCode();
+            });
+            
+            // Copiar código al portapapeles
+            copyBtn.addEventListener('click', function() {
+                const textArea = document.createElement('textarea');
+                textArea.value = generatedCode.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Mostrar notificación
+                showNotification('¡Código copiado al portapapeles!');
+            });
+            
+            // Importar código existente
+            importBtn.addEventListener('click', function() {
+                try {
+                    const code = importCode.value.trim();
+                    if (!code) {
+                        showNotification('Por favor, pega el código HTML de una tarjeta', true);
+                        return;
+                    }
+                    
+                    // Crear un elemento temporal para parsear el HTML
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = code;
+                    
+                    const card = tempDiv.querySelector('.project-card');
+                    if (!card) {
+                        showNotification('El código no contiene una tarjeta válida', true);
+                        return;
+                    }
+                    
+                    // Extraer datos de la tarjeta
+                    const type = card.getAttribute('data-type') || 'desktop';
+                    projectType.value = type;
+                    
+                    const titleElem = card.querySelector('.project-title');
+                    if (titleElem) projectTitle.value = titleElem.textContent || '';
+                    
+                    const descElem = card.querySelector('.project-description');
+                    if (descElem) projectDescription.value = descElem.textContent || '';
+                    
+                    const imgElem = card.querySelector('.project-image img');
+                    if (imgElem) {
+                        projectImage.value = imgElem.getAttribute('src') || '';
+                        imageAlt.value = imgElem.getAttribute('alt') || '';
+                    }
+                    
+                    const metaElems = card.querySelectorAll('.project-meta span');
+                    if (metaElems.length >= 2) {
+                        meta1.value = metaElems[0].textContent || '';
+                        meta2.value = metaElems[1].textContent || '';
+                    }
+                    
+                    const actionBtns = card.querySelectorAll('.project-actions a');
+                    if (actionBtns.length >= 1) {
+                        primaryBtnText.value = actionBtns[0].textContent || '';
+                        primaryBtnUrl.value = actionBtns[0].getAttribute('href') || '';
+                    }
+                    
+                    if (actionBtns.length >= 2) {
+                        repoUrl.value = actionBtns[1].getAttribute('href') || '';
+                    }
+                    
+                    updatePreview();
+                    generateCode();
+                    showNotification('¡Código importado correctamente!');
+                    
+                } catch (error) {
+                    console.error(error);
+                    showNotification('Error al importar el código: ' + error.message, true);
+                }
+            });
+            
+            // Limpiar área de importación
+            clearImportBtn.addEventListener('click', function() {
+                importCode.value = '';
+            });
+            
+            // Función para mostrar notificaciones
+            function showNotification(message, isError = false) {
+                notification.textContent = message;
+                notification.classList.remove('error');
+                if (isError) notification.classList.add('error');
+                
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Función para actualizar la vista previa
+            function updatePreview() {
+                const type = projectType.value;
+                const typeText = type === 'desktop' ? 'Desktop App' : 
+                                type === 'web' ? 'Sitio Web' : 'Utilidad';
+                
+                const title = projectTitle.value || 'Nombre del Proyecto';
+                const description = projectDescription.value || 'Descripción breve del proyecto. Esta es una vista previa de cómo se verá tu tarjeta.';
+                const image = projectImage.value || 'https://via.placeholder.com/300x180/3498db/ffffff?text=Project+Image';
+                const alt = imageAlt.value || 'Project preview image';
+                const m1 = meta1.value || 'Meta info 1';
+                const m2 = meta2.value || 'Meta info 2';
+                const primaryText = primaryBtnText.value || 'Acción principal';
+                const primaryUrl = primaryBtnUrl.value || '#';
+                const repo = repoUrl.value || '#';
+                
+                // Determinar clase del botón principal
+                let primaryBtnClass = 'btn-preview-primary';
+                if (primaryUrl === '#' && primaryText.includes('no disponible')) {
+                    primaryBtnClass = 'btn-preview-disabled';
+                }
+                
+                preview.innerHTML = `
+                    <div class="project-card" data-type="${type}">
+                        <div class="project-image">
+                            <img src="${image}" alt="${alt}">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-type type-${type}">${typeText}</span>
+                            <h3 class="project-title">${title}</h3>
+                            <p class="project-description">${description}</p>
+                            <div class="project-meta">
+                                <span>${m1}</span>
+                                <span>${m2}</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="${primaryUrl}" class="btn-preview ${primaryBtnClass}">${primaryText}</a>
+                                <a href="${repo}" class="btn-preview ${repo === '#' ? 'btn-preview-disabled' : 'btn-preview-secondary'}">Repositorio</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Función para generar el código HTML
+            function generateCode() {
+                const type = projectType.value;
+                const typeText = type === 'desktop' ? 'Desktop App' : 
+                                type === 'web' ? 'Sitio Web' : 'Utilidad';
+                
+                const title = projectTitle.value || 'Nombre del Proyecto';
+                const description = projectDescription.value || 'Descripción breve del proyecto';
+                const image = projectImage.value || 'https://via.placeholder.com/300x180/3498db/ffffff?text=Project+Image';
+                const alt = imageAlt.value || 'Descripción de la imagen';
+                const m1 = meta1.value || 'Información adicional 1';
+                const m2 = meta2.value || 'Información adicional 2';
+                const primaryText = primaryBtnText.value || 'Acción principal';
+                const primaryUrl = primaryBtnUrl.value || '#';
+                const repo = repoUrl.value || '#';
+                
+                // Determinar clase del botón principal
+                let primaryBtnClass = 'btn btn-primary';
+                if (primaryUrl === '#' && primaryText.includes('no disponible')) {
+                    primaryBtnClass = 'btn btn-disabled';
+                }
+                
+                const code = `
+<div class="project-card" data-type="${type}">
+    <div class="project-image">
+        <img src="${image}" alt="${alt}">
+    </div>
+    <div class="project-content">
+        <span class="project-type type-${type}">${typeText}</span>
+        <h3 class="project-title">${title}</h3>
+        <p class="project-description">${description}</p>
+        <div class="project-meta">
+            <span>${m1}</span>
+            <span>${m2}</span>
+        </div>
+        <div class="project-actions">
+            <a href="${primaryUrl}" class="${primaryBtnClass}">${primaryText}</a>
+            <a href="${repo}" class="btn btn-secondary">Repositorio</a>
+        </div>
+    </div>
+</div>`.trim();
+                
+                // Resaltado de sintaxis básico
+                const highlightedCode = code
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/(class|data-type|src|alt|href)=/g, '<span class="attribute">$1</span>=')
+                    .replace(/="([^"]*)"/g, '="<span class="value">$1</span>"')
+                    .replace(/(type-\w+)/g, '<span class="value">$1</span>')
+                    .replace(/(btn-\w+)/g, '<span class="value">$1</span>');
+                
+                generatedCode.innerHTML = highlightedCode;
+            }
+            
+            // Inicializar
+            updatePreview();
+            generateCode();
+        });
+    </script>
+</body>
+</html>
