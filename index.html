@@ -359,7 +359,7 @@
                 type.textContent=getFilterText(project.type);
                 title.textContent=project.title;
                 description.innerHTML=project.description;
-                version.textContent=project.version;
+                version.textContent=project.versions[0].version;
                 platforms.textContent=project.platforms.join(",");
                 download_btn.href=project.links.download;
                 repository_btn.href=project.links.repository;

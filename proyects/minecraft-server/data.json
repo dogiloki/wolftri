@@ -1,60 +1,65 @@
-
-  {
-      "id": "minecraft-server",
-      "type": "desktop",
-      "image": "proyects/minecraft-server/assets/logo.svg",
-      "title": "Minecraft Server",
-      "description": "Aplicación para gestionar servidores de Minecraft e instancias. Soporte para crear respaldos de mundos.",
-      "version": "1.0.0-beta.1",
-      "platforms": ["Windows"],
-      "languages": ["Java"],
-      "links": {
-          "download": "proyects/minecraft-server",
-          "repository": "https://github.com/dogiloki/minecraftServer"
-      },
-      "warning": "Este proyecto NO ES OFICIAL de Mojang o Microsoft, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.",
-      "versions":[
-          {
-              "version": "1.0.0-beta.1",
-              "date": "19 Agosto 2025",
-              "download": "https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.1.zip",
-              "size": "1 MB",
-              "changelog": "Primera versión"
-          }
-      ],
-      "features": [
-          {
-              "icon": "fas fa-tasks",
-              "title": "Creación de Instancias",
-              "description": "Una instancia es un espacio de trabajo independiente donde puedes gestionar:\n<ul><li>Versión de Java para lanzar el servidor</li><li>Versión de Minecraft</li><li>Versión de forge con mods</li><li>Mundos asociados a la instancia</li><li>Gestión de Mods a utilizar</li><li>Configuraciones personalizadas del servidor</li></ul>"
-          },
-          {
-              "icon": "fas fa-cubes",
-              "title": "Gestión de Paquetes de Mods",
-              "description": "Tiene un apartado central donde se almacenan todos los paquetes de mods.<br>Al crear una instancia se puede elegir cuales usar y cuales no, sin importar en qué paquete estén."
-          },
-          {
-              "icon": "fas fa-project-diagram",
-              "title": "Respaldos de Mundos Integrado con <a href=\"https://git-scm.com/downloads\" title=\"Descargar GIT\">GIT</a>",
-              "description": "Puedes hacer un respaldo de un mundo en cualquier momento.<br>Los respaldos se hacen con <a href=\"https://git-scm.com/downloads\" title=\"Descargar GIT\">GIT</a>, por lo que puedes ver los cambios entre cada respaldo, volver a un respaldo anterior, etc.<br>"
-          },
-          {
-              "icon": "fas fa-sync-alt",
-              "title": "Fácil de actualizar",
-              "description": "Hay un botón en la parte superior derecha que te permite buscar actualizaciones.<br>Si hay una nueva versión disponible, te mostrará un botón para descargarla e instalarla.<br>Todo el proceso es automático y no perderás ninguna configuración ni dato."
-          }
-      ],
-      "screenshots":[
-          "proyects/minecraft-server/assets/logo.svg"
-      ],
-      "documentation": [
-          {
-              "title": "Instalación",
-              "content": "Sigue estos pasos para iniciar Minecraft Server en su sistema:<br><ol><li>Descargue la versión adecuada para su sistema operativo</li><li>Descomprir el archivo (el programa es portable)</li><li>Ejecutar el archivo minecraft-server.exe</li><li>¡Comience a usar Minecraft Server!</li></ol>"
-          },
-          {
-              "title": "Tutorial",
-              "content": "Proxamente..."
-          }
-      ]
-  }
+{
+    "id": "minecraft-server",
+    "type": "desktop",
+    "image": "proyects/minecraft-server/assets/logo.svg",
+    "title": "Minecraft Server",
+    "description": "Aplicación para gestionar servidores de Minecraft e instancias. Soporte para crear respaldos de mundos.",
+    "platforms": ["Windows"],
+    "languages": ["Java"],
+    "links": {
+        "download": "proyects/minecraft-server",
+        "repository": "https://github.com/dogiloki/minecraftServer"
+    },
+    "warning": "Este proyecto NO ES OFICIAL de Mojang o Microsoft, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.",
+    "versions":[
+        {
+            "version": "1.0.0-beta.2",
+            "date": "21 Agosto 2025",
+            "download": "https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.2.zip",
+            "size": "1 MB",
+            "changelog": "<h3>Agredado</h3><ul><li>Icono en la ventana al abrir el programa</li></ul><h3>Cambió</h3><ul><li>El flujo del resplado inicial omite mundos vacíos. Omitiendo el resplado inicial del mundo</li></ul><h3>Arreglado</h3><ul><li>Se corrigió el falso \"Error al crear respaldo\" en el resplado inicial. Cuando el mundo estaba vacío</li></ul>"
+        },
+        {
+            "version": "1.0.0-beta.1",
+            "date": "19 Agosto 2025",
+            "download": "https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.1.zip",
+            "size": "1 MB",
+            "changelog": "Primera versión"
+        }
+    ],
+    "features": [
+        {
+            "icon": "fas fa-tasks",
+            "title": "Creación de Instancias",
+            "description": "Una instancia es un espacio de trabajo independiente donde puedes gestionar:\n<ul><li>Versión de Java para lanzar el servidor</li><li>Versión de Minecraft</li><li>Versión de forge con mods</li><li>Mundos asociados a la instancia</li><li>Gestión de Mods a utilizar</li><li>Configuraciones personalizadas del servidor</li></ul>"
+        },
+        {
+            "icon": "fas fa-cubes",
+            "title": "Gestión de Paquetes de Mods",
+            "description": "Tiene un apartado central donde se almacenan todos los paquetes de mods.<br>Al crear una instancia se puede elegir cuales usar y cuales no, sin importar en qué paquete estén."
+        },
+        {
+            "icon": "fas fa-project-diagram",
+            "title": "Respaldos de Mundos Integrado con <a href=\"https://git-scm.com/downloads\" title=\"Descargar GIT\">GIT</a>",
+            "description": "Puedes hacer un respaldo de un mundo en cualquier momento.<br>Los respaldos se hacen con <a href=\"https://git-scm.com/downloads\" title=\"Descargar GIT\">GIT</a>, por lo que puedes ver los cambios entre cada respaldo, volver a un respaldo anterior, etc.<br>"
+        },
+        {
+            "icon": "fas fa-sync-alt",
+            "title": "Fácil de actualizar",
+            "description": "Hay un botón en la parte superior derecha que te permite buscar actualizaciones.<br>Si hay una nueva versión disponible, te mostrará un botón para descargarla e instalarla.<br>Todo el proceso es automático y no perderás ninguna configuración ni dato."
+        }
+    ],
+    "screenshots":[
+        "proyects/minecraft-server/assets/logo.svg"
+    ],
+    "documentation": [
+        {
+            "title": "Instalación",
+            "content": "Sigue estos pasos para iniciar Minecraft Server en su sistema:<br><ol><li>Descargue la versión adecuada para su sistema operativo</li><li>Descomprir el archivo (el programa es portable)</li><li>Ejecutar el archivo minecraft-server.exe</li><li>¡Comience a usar Minecraft Server!</li></ol>"
+        },
+        {
+            "title": "Tutorial",
+            "content": "Proxamente..."
+        }
+    ]
+}

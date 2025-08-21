@@ -5,7 +5,6 @@
         "image": "proyects/minecraft-server/assets/logo.svg",
         "title": "Minecraft Server",
         "description": "Aplicación para gestionar servidores de Minecraft e instancias. Soporte para crear respaldos de mundos.",
-        "version": "1.0.0-beta.1",
         "platforms": ["Windows"],
         "languages": ["Java"],
         "links": {
@@ -14,6 +13,13 @@
         },
         "warning": "Este proyecto NO ES OFICIAL de Mojang o Microsoft, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.",
         "versions":[
+            {
+                "version": "1.0.0-beta.2",
+                "date": "21 Agosto 2025",
+                "download": "https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.2.zip",
+                "size": "1 MB",
+                "changelog": "<h3>Agredado</h3><ul><li>Icono en la ventana al abrir el programa</li></ul><h3>Cambió</h3><ul><li>El flujo del resplado inicial omite mundos vacíos. Omitiendo el resplado inicial del mundo</li></ul><h3>Arreglado</h3><ul><li>Se corrigió el falso \"Error al crear respaldo\" en el resplado inicial. Cuando el mundo estaba vacío</li></ul>"
+            },
             {
                 "version": "1.0.0-beta.1",
                 "date": "19 Agosto 2025",
@@ -50,7 +56,7 @@
         "documentation": [
             {
                 "title": "Instalación",
-                "content": "Siga estos pasos para iniciar Minecraft Server en su sistema:<br><ol><li>Descargue la versión adecuada para su sistema operativo</li><li>Descomprir el archivo (el programa es portable)</li>Ejecutar el archivo minecraft-server.exe<li></li><li>¡Comience a usar Minecraft Server!</li></ol>"
+                "content": "Sigue estos pasos para iniciar Minecraft Server en su sistema:<br><ol><li>Descargue la versión adecuada para su sistema operativo</li><li>Descomprir el archivo (el programa es portable)</li><li>Ejecutar el archivo minecraft-server.exe</li><li>¡Comience a usar Minecraft Server!</li></ol>"
             },
             {
                 "title": "Tutorial",
