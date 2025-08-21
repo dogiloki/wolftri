@@ -290,7 +290,7 @@
                 <p class="project-description"></p>
                 <div class="project-meta">
                     <span class="project-version"></span>
-                    <span class="project-languages"></span>
+                    <span class="project-platforms"></span>
                 </div>
                 <div class="project-actions">
                     <a href="" class="btn btn-primary project-download-btn">Descargar</a>
@@ -338,7 +338,7 @@
 
         function loadProjects(projects){
             projects_container.innerHTML="";
-            for(let project of projects){
+            for(const project of projects){
                 // Obtener elementos
                 const clone=projects_container_template.content.cloneNode(true);
                 const card=clone.querySelector('.project-card');
@@ -347,7 +347,7 @@
                 const title=clone.querySelector('.project-title');
                 const description=clone.querySelector('.project-description');
                 const version=clone.querySelector('.project-version');
-                const languages=clone.querySelector('.project-languages');
+                const platforms=clone.querySelector('.project-platforms');
                 const download_btn=clone.querySelector('.project-download-btn');
                 const repository_btn=clone.querySelector('.project-repository-btn');
                 const warning=clone.querySelector('.project-warning span');
@@ -358,12 +358,12 @@
                 type.classList.add('type-'+project.type);
                 type.textContent=getFilterText(project.type);
                 title.textContent=project.title;
-                description.textContent=project.description;
+                description.innerHTML=project.description;
                 version.textContent=project.version;
-                languages.textContent=project.languages.join(",");
+                platforms.textContent=project.platforms.join(",");
                 download_btn.href=project.links.download;
                 repository_btn.href=project.links.repository;
-                warning.textContent=project.warning;
+                warning.innerHTML=project.warning;
 
                 // Agregar proyecto al contenedor
                 projects_container.appendChild(clone);
@@ -399,9 +399,11 @@
             return {
                 "desktop": "Aplicación de Escritorio",
                 "web": "Sitio Web",
-                "utility": "Utilidad"
+                "utility": "Utilidad",
+                "game": "Juego"
             }[value];
         }
+        
     </script>
 </body>
 </html>

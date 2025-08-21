@@ -308,7 +308,7 @@
             box-shadow: var(--card-shadow);
             transition: var(--transition);
             
-            ul{
+            ul,ol{
                 margin-left: 1rem;
             }
         }
@@ -445,16 +445,17 @@
     </style>
 </head>
 <body>
+
     <header>
         <div class="header-container">
-            <a href="https://dogiloki.github.io/wolftri" class="back-btn">
+            <a href="" class="back-btn" id="back-to-projects">
                 <i class="fas fa-arrow-left"></i>
                 Volver a proyectos
             </a>
             <a href="https://github.com/dogiloki" class="back-btn">
                 <div class="logo">
                     <i class="fas fa-project-diagram"></i>
-                    <span title="Desarrollador">Julio Villanueva</span>
+                    <span title="Desarrollador" id="developer">Julio Villanueva</span>
                 </div>
             </a>
         </div>
@@ -462,49 +463,45 @@
     
     <div class="main-container">
         <div class="project-header">
-            <div class="project-image">
+            <div class="project-image" id="project-image">
                 <img src="assets/logo.svg">
             </div>
             <div class="project-info">
-                <span class="project-type">Desktop App</span>
-                <h1 class="project-title">Minecraft Server</h1>
-                <p class="project-description">
-                    Aplicación para gestionar servidores de Minecraft e instancias. Soporte para crear respaldos de mundos.
-                </p>
+                <span class="project-type" id="project-type"></span>
+                <h1 class="project-title" id="project-title"></h1>
+                <p class="project-description" id="project-description"></p>
                 
                 <div class="project-meta">
                     <div class="meta-item">
                         <span class="meta-label">Versión actual</span>
-                        <span class="meta-value">v1.0.0-beta.1</span>
+                        <span class="meta-value" id="project-version"></span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">Lanzamiento</span>
-                        <span class="meta-value">20 Agosto 2025</span>
+                        <span class="meta-value" id="project-date"></span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">Plataformas</span>
-                        <span class="meta-value">Windows</span>
+                        <span class="meta-value" id="project-platforms"></span>
                     </div>
                     <div class="meta-item">
                         <span class="meta-label">Tamaño</span>
-                        <span class="meta-value">1 MB</span>
+                        <span class="meta-value" id="project-size"></span>
                     </div>
                 </div>
                 
                 <div class="project-actions">
-                    <a href="https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.1.zip" class="btn btn-primary">
+                    <a href="" class="btn btn-primary" id="project-download-btn">
                         <i class="fas fa-download"></i>
                         Descargar última versión
                     </a>
-                    <a href="https://github.com/dogiloki/minecraftServer" class="btn btn-secondary">
+                    <a href="" class="btn btn-secondary" id="project-repository-btn">
                         <i class="fab fa-github"></i>
                         Ver código fuente
                     </a>
                 </div>
 
-                <div class="project-warning">
-                    <strong>Advertencia:</strong> <b>Este proyecto NO ES OFICIAL de Mojang o Microsoft</b>, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.
-                </div>
+                <div class="project-warning" id="project-warning"></div>
             </div>
         </div>
         
@@ -516,110 +513,58 @@
         </div>
         
         <div class="tab-content active" id="versions">
-            <div class="versions-container">
-                <div class="version-item">
-                    <div class="version-info">
-                        <h3 class="version-title">v1.0.0-beta.1 - Estable</h3>
-                        <div class="version-date">20 Agosto 2025</div>
-                        <p class="version-description">
-                            Primera versión
-                        </p>
-                    </div>
-                    <div class="version-download">
-                        <a href="https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.1.zip" class="download-btn">
-                            <i class="fas fa-download"></i>
-                            Descargar (1 MB)
-                        </a>
-                    </div>
+            <div class="versions-container" id="versions-container"></div>
+        </div>
+        <template id="version-item-template">
+            <div class="version-item">
+                <div class="version-info">
+                    <h3 class="version-title"></h3>
+                    <div class="version-date"></div>
+                    <p class="version-description"></p>
+                </div>
+                <div class="version-download">
+                    <a href="" class="download-btn">
+                        <i class="fas fa-download"></i>
+                        Descargar (<span class="version-size"></span>)
+                    </a>
                 </div>
             </div>
-        </div>
+        </template>
         
         <div class="tab-content" id="features">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <h3 class="feature-title">Creación de Instancias</h3>
-                    <p class="feature-description">
-                        Una instancia es un espacio de trabajo independiente donde puedes gestionar<br>
-                        <ul>
-                            <li>Versión de Java para lanzar el servidor</li>
-                            <li>Versión de Minecraft</li>
-                            <li>Versión de forge con mods</li>
-                            <li>Mundos asociados a la instancia</li>
-                            <li>Gestión de Mods a utilizar</li>
-                            <li>Configuraciones personalizadas del servidor</li>
-                        </ul>
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-cubes"></i>
-                    </div>
-                    <h3 class="feature-title">Gestión de Paquetes de Mods</h3>
-                    <p class="feature-description">
-                        Tiene un apartado central donde se almacenan todos los paquetes de mods.
-                        Al crear una instancia de puede elegir cuales usar y cuales no, sin importar en que paquete estén.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                    <h3 class="feature-title">Respaldos de Mundos Integrado con <a href="https://git-scm.com/downloads">GIT</a></h3>
-                    <p class="feature-description">
-                        Pueder hacer un respaldo de un mundo en cualquier momento.
-                        Los respaldos se hacen con GIT, por lo que puedes ver los cambios entre cada respaldo, volver a un respaldo anterior, etc.
-                        Nota: Es necesario tener GIT instalado en el sistema.
-                    </p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Facíl de actualizar</h3>
-                    <p class="feature-description">
-                        Hay un botón en la parte superior derecha que te permite buscar actualizaciones.
-                        Si hay una nueva versión disponible, te mostrará un botón para descargarla e instalarla.
-                        Todo el proceso es automático y no perderás ninguna configuración ni dato.
-                    </p>
-                </div>
-            </div>
+            <div class="features-grid" id="features-grid"></div>
         </div>
+        <template id="feature-card-template">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class=""></i>
+                </div>
+                <h3 class="feature-title"></h3>
+                <p class="feature-description"></p>
+            </div>
+        </template>
         
         <div class="tab-content" id="screenshots">
-            <div class="screenshots-grid">
-                <div class="screenshot-item">
-                    <img src="assets/logo.svg">
-                </div>
-            </div>
+            <div class="screenshots-grid" id="screenshots-grid"></div>
         </div>
+        <template id="screenshot-item-template">
+            <div class="screenshot-item">
+                <img src="assets/logo.svg">
+            </div>
+        </template>
         
         <div class="tab-content" id="documentation">
-            <div class="doc-section">
-                <h3>Instalación</h3>
-                <div class="doc-content">
-                    <p>Siga estos pasos para inciar Minecraft Server en su sistema:</p>
-                    <ol>
-                        <li>Descargue la versión adecuada para su sistema operativo</li>
-                        <li>Descomprima el archivo (es progrma es portable)</li>
-                        <li>Ejecute el archivo minecraft-server.exe</li>
-                        <li>¡Comience a usar Minecraft Server!</li>
-                    </ol>
-                </div>
-            </div>
-            <div class="doc-section">
-                <h3>Tutorial</h3>
-                <div class="doc-content">
-                    PROXIMAMENTE...
-                </div>
-            </div>
+            <div class="documentations-container" id="documentations-container"></div>
         </div>
+        <template id="documentation-item-template">
+            <div class="documentation-item">
+                <div class="doc-section">
+                    <h3 class="doc-title"></h3>
+                    <div class="doc-content"></div>
+                </div>
+            </div>
+        </template>
+
     </div>
     
     <footer>
@@ -627,8 +572,26 @@
         <p>Contacto: Julio Villanueva - wolftri2002@gmail.com</p>
     </footer>
 
-    <script>
+    <script type="module">
+
+        import XHR from '../../scripts/XHR.js';
+        import Fetch from '../../scripts/Fetch.js';
+
+        const versions_container=document.getElementById('versions-container');
+        const version_item_template=document.getElementById('version-item-template');
+
+        const features_grid=document.getElementById('features-grid');
+        const feature_card_template=document.getElementById('feature-card-template');
+
+        const screenshots_grid=document.getElementById('screenshots-grid');
+        const screenshot_item_template=document.getElementById('screenshot-item-template');
+
+        const documentations_container=document.getElementById('documentations-container');
+        const documentation_item_template=document.getElementById('documentation-item-template');
+
         document.addEventListener('DOMContentLoaded', function() {
+            getProject();
+
             // Tab functionality
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -647,6 +610,111 @@
                 });
             });
         });
+
+        function getProject(){
+            XHR.request({
+                uri:"proyects/minecraft-server/data.json",
+                headers:{
+                    'Accept':'application/json'
+                },
+                action:(xhr)=>{
+                    xhr.responseType='json';
+                },
+                load:(data)=>{
+                    loadProject(data.response);
+                }
+            });
+        }
+
+        function loadProject(project){
+            // Obtener elementos
+            const back_to_projects=document.getElementById('back-to-projects');
+            const image=document.querySelector('.project-image img');
+            const type=document.getElementById('project-type');
+            const description=document.getElementById('project-description');
+            const last_version=document.getElementById('project-version');
+            const last_date=document.getElementById('project-date');
+            const platforms=document.getElementById('project-platforms');
+            const last_size=document.getElementById('project-size');
+            const last_download_btn=document.getElementById('project-download-btn');
+            const repository_btn=document.getElementById('project-repository-btn');
+            const warning=document.getElementById('project-warning');
+
+            // Datos generales
+            back_to_projects.href=parceUrl("");
+            image.src=parceUrl(project.image);
+            type.classList.add('type-'+project.type);
+            type.textContent=getFilterText(project.type);
+            description.innerHTML=project.description;
+            platforms.textContent=project.platforms.join(",");
+            repository_btn.href=project.links.repository;
+            warning.innerHTML=project.warning;
+            // Versiones
+            let version_index=0;
+            for(const version of project.versions){
+                if(version_index==10) break;
+                if(version_index==0){
+                    last_version.textContent=version.version;
+                    last_date.textContent=version.date;
+                    last_size.textContent=version.size;
+                    last_download_btn.href=version.download;
+                }
+                const version_clone=version_item_template.content.cloneNode(true);
+                const version_title=version_clone.querySelector('.version-title');
+                const version_date=version_clone.querySelector('.version-date');
+                const version_description=version_clone.querySelector('.version-description');
+                const version_download_btn=version_clone.querySelector('.download-btn');
+                const version_size=version_clone.querySelector('.version-size');
+                version_title.textContent=version.version;
+                version_date.textContent=version.date;
+                version_description.innerHTML=version.changelog;
+                version_download_btn.href=version.download;
+                version_size.textContent=version.size;
+                versions_container.appendChild(version_clone);
+                version_index++;
+            }
+            // Características
+            for(const feature of project.features){
+                const feature_clone=feature_card_template.content.cloneNode(true);
+                const feature_icon=feature_clone.querySelector('.feature-icon i');
+                const feature_title=feature_clone.querySelector('.feature-title');
+                const feature_description=feature_clone.querySelector('.feature-description');
+                feature_icon.classList.add(...feature.icon.split(" "));
+                feature_title.innerHTML=feature.title;
+                feature_description.innerHTML=feature.description;
+                features_grid.appendChild(feature_clone);
+            }
+            // Capturas de pantalla
+            for(const screenshot of project.screenshots){
+                const screenshot_clone=screenshot_item_template.content.cloneNode(true);
+                const screenshot_item=screenshot_clone.querySelector('.screenshot-item img');
+                screenshot_item.src=parceUrl(screenshot);
+                screenshots_grid.appendChild(screenshot_clone);
+            }
+            // Documentación
+            for(const doc of project.documentation){
+                const documentation_clone=documentation_item_template.content.cloneNode(true);
+                const doc_title=documentation_clone.querySelector('.doc-title');
+                const doc_content=documentation_clone.querySelector('.doc-content');
+                doc_title.textContent=doc.title;
+                doc_content.innerHTML=doc.content;
+                documentations_container.appendChild(documentation_clone);
+            }
+        }
+
+        function parceUrl(route){
+            return Fetch.host+"/"+route;
+        }
+
+        function getFilterText(value){
+            return {
+                "desktop": "Aplicación de Escritorio",
+                "web": "Sitio Web",
+                "utility": "Utilidad",
+                "game": "Juego"
+            }[value];
+        }
+
     </script>
 </body>
 </html>
