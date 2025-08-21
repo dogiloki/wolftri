@@ -50,7 +50,7 @@
       "documentation": [
           {
               "title": "Instalación",
-              "content": "Siga estos pasos para iniciar Minecraft Server en su sistema:<br><ol><li>Descargue la versión adecuada para su sistema operativo</li><li>Descomprir el archivo (el programa es portable)</li>Ejecutar el archivo minecraft-server.exe<li></li><li>¡Comience a usar Minecraft Server!</li></ol>"
+              "content": "Sigue estos pasos para iniciar Minecraft Server en su sistema:<br><ol><li>Descargue la versión adecuada para su sistema operativo</li><li>Descomprir el archivo (el programa es portable)</li><li>Ejecutar el archivo minecraft-server.exe</li><li>¡Comience a usar Minecraft Server!</li></ol>"
           },
           {
               "title": "Tutorial",
