@@ -3,3 +3,8 @@
 [03:46:04] [DEBUG] Recargar datos de la Instancia
 [03:46:04] [DEBUG] Crear Instancia
 [03:46:04] [DEBUG] Recargar datos de la Instancia
+[16:58:25] [DEBUG] Cargando instancias
+[16:58:25] [DEBUG] Crear Instancia
+[16:58:25] [DEBUG] Recargar datos de la Instancia
+[16:58:25] [DEBUG] Crear Instancia
+[16:58:25] [DEBUG] Recargar datos de la Instancia
