@@ -13,11 +13,18 @@
     "warning": "Este proyecto NO ES OFICIAL de Mojang o Microsoft, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.",
     "versions":[
         {
+            "version": "1.0.0",
+            "date": "23 Agosto 2025",
+            "download": "https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0.zip",
+            "size": "1 MB",
+            "changelog": "<b>Agregado</b> <ul> <li>Confirmación antes de eliminar Instancia, descartar cambios y al cargar respaldos del mundo</li> </ul>"
+        },
+        {
             "version": "1.0.0-beta.3",
             "date": "23 Agosto 2025",
             "download": "https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.0-beta.3.zip",
             "size": "1 MB",
-            "changelog": "<b>Agregado</b> <ul> <li>Panel para mostrar logs con colores según el tipo.</li> <li>Botón para eliminar instancia (no elimina la carpeta).</li> <li>Mensaje de error al guardar la instancia según el apartado que fue erróneo, arrojando una excepción.</li> <li>Validación obligatoria de nombre y versión al crear instancia.</li> </ul> <b>Cambiado</b> <ul> <li>En la edición de instancia se quitó la posibilidad de cambiar el nombre, ya que depende de la ruta de la instancia.</li> <li>Pendientes agregar botón aparte para renombrar instancia y mundo. Para evitar dicha anomalía</li> </ul> <b>Arreglado</b> <ul> <li>Error al cargar instancia cuando no existían al inicio del programa</li> <li>Error al intentar guardar una instancia sin nombre o versión, o al editar nombre</li> </ul>"
+            "changelog": "<b>Agregado</b> <ul> <li>Panel para mostrar logs con colores según el tipo.</li> <li>Botón para eliminar instancia (no elimina la carpeta).</li> <li>Mensaje de error al guardar la instancia según el apartado que fue erróneo, arrojando una excepción.</li> <li>Validación obligatoria de nombre y versión al crear instancia.</li> </ul> <b>Cambiado</b> <ul> <li>En la edición de instancia se quitó la posibilidad de cambiar el nombre, ya que depende de la ruta de la instancia.</li> <li>Pendientes agregar botón aparte para renombrar instancia y mundo. Para evitar dicha anomalía</li> </ul> <b>Arreglado</b> <ul> <li>Error al cargar instancia cuando no existían al inicio del programa</li> <li>Error al intentar guardar una instancia sin nombre o versión, o al editar nombre</li> <li>Error al descargar cambios si anteriormente se cargo un respaldo y el mundo no tuvo no hay cambios</li> </ul>"
         },
         {
             "version": "1.0.0-beta.2",
