@@ -13,6 +13,13 @@
         },
         "warning": "Este proyecto NO ES OFICIAL de Mojang o Microsoft, es un proyecto personal para facilitar el lanzamiento de servidores de Minecraft.",
         "versions":[
+              {
+                "version": "1.0.1",
+                "date": "24 Agosto 2025",
+                "download": "https://dogiloki.github.io/wolftri/proyects/minecraft-server/minecraft-server-1.0.1.zip",
+                "size": "1 MB",
+                "changelog": "<b>Arreglado</b> <ul> <li>Error al descargar cambios del mundo, cuando el mundo crea nuevo archivo que git no tiene rastro</li> </ul>"
+            },
             {
                 "version": "1.0.0",
                 "date": "23 Agosto 2025",
